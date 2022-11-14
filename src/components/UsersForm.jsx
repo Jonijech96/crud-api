@@ -63,7 +63,7 @@ const UsersForm = ({
         )
         .then(() => getUsers())
         .catch((error) => console.log(error.response?.data));
-      selectUser(null);
+      
     } else {
       axios
         .post("https://users-crud1.herokuapp.com/users/", data)
@@ -72,19 +72,20 @@ const UsersForm = ({
       reset(initialValue);
     }
     toast({
-      title: "Account created.",
-      description: "We've created your account for you.",
+      title: "Well done!",
+      description: `We've ${userSelected ? "edit" : "created"} your user for you.`,
       status: "success",
       duration: 9000,
       isClosable: true,
     });
+    selectUser(null);
     onClose();
   };
   const cancel = () => {
     onClose();
     toast({
-      title: userSelected ? "card edit cancel." : "card create cancel",
-      description: "We've created your account for you.",
+      title: userSelected ? "user edit cancel." : "user create cancel",
+      description: `We've cancel ${userSelected ? "edit" : "create"} user for you.`,
       status: "info",
       duration: 9000,
       isClosable: true,
@@ -138,7 +139,7 @@ const UsersForm = ({
                   <Input
                     pr="4.5rem"
                     type={show ? "text" : "password"}
-                    placeholder="Enter password"
+                    placeholder="*******"
                     {...register("password")}
                   />
                   <InputRightElement width="4.5rem">
@@ -154,19 +155,19 @@ const UsersForm = ({
 
                 <Input
                   type="text"
-                  placeholder="first name"
+                  placeholder="user"
                   {...register("first_name")}
                 />
-                <FormHelperText>ingrese nombre</FormHelperText>
+                {/* <FormHelperText>ingrese nombre</FormHelperText> */}
               </FormControl>
               <FormControl isInvalid={false} mb={4} id="last_name">
                 <FormLabel>Last name</FormLabel>
                 <Input
                   type="text"
-                  placeholder="last name"
+                  placeholder="example"
                   {...register("last_name")}
                 />
-                <FormHelperText>ingrese segundo nombre</FormHelperText>
+                {/* <FormHelperText>ingrese segundo nombre</FormHelperText> */}
               </FormControl>
               <FormControl isInvalid={false} mb={4} id="birthday">
                 <FormLabel>birthday</FormLabel>
@@ -175,14 +176,14 @@ const UsersForm = ({
                   placeholder="birthday"
                   {...register("birthday")}
                 />
-                <FormHelperText>ingrese cumpleaños</FormHelperText>
+                {/* <FormHelperText>ingrese cumpleaños</FormHelperText> */}
               </FormControl>
             </form>
           </ModalBody>
 
           <ModalFooter>
             <Button type="submit" form="newForm" colorScheme="teal" mr={2}>
-              Save
+              {userSelected ? "Edit" : "Save"}
             </Button>
             <Button colorScheme="red" mr={3} onClick={cancel}>
               Cancel

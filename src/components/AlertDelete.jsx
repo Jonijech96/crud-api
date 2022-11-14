@@ -21,8 +21,8 @@ export const AlertDelete = ({ idUser, deleteUser }) => {
     onClose();
     deleteUser(idUser);
     toast({
-      title: "Account deleted.",
-      description: "We've created your account for you.",
+      title: "User deleted.",
+      description: "We've deleted your user for you.",
       status: "success",
       duration: 9000,
       isClosable: true,
@@ -31,8 +31,8 @@ export const AlertDelete = ({ idUser, deleteUser }) => {
   const buttonCancel = () => {
     onClose();
     toast({
-      title: "Account created.",
-      description: "We've created your account for you.",
+      title: "User delete cancel.",
+      description: "We've cancel delete your user for you.",
       status: "info",
       duration: 9000,
       isClosable: true,
